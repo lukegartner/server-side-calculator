@@ -3,6 +3,8 @@ const num1Input = document.querySelector("#num1");
 const num2Input = document.querySelector("#num2");
 const operationBtns = document.querySelectorAll(".operation-btn");
 const clearBtn = document.querySelector("#clear");
+const resultDOM = document.querySelector(".result");
+const historyList = document.querySelector(".history-list");
 
 // active operation
 for (let btn of operationBtns) {
@@ -39,6 +41,14 @@ const getCalculations = () => {
 // Display Calculations
 const displayCalculations = (calculations) => {
   console.log("calculations from display:", calculations);
+  if (calculations.length > 0) {
+    resultDOM.innerHTML = calculations[calculations.length - 1].result;
+    historyList.innerHTML = calculations.map(({ expression }) => {
+      return `
+        <li>${expression}</li>
+        `;
+    });
+  }
 };
 
 // Get iniital calculations
