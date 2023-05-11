@@ -6,7 +6,7 @@ const clearBtn = document.querySelector("#clear");
 const resultDOM = document.querySelector(".result");
 const historyList = document.querySelector(".history-list");
 
-// active operation
+// active math operation
 for (let btn of operationBtns) {
   btn.addEventListener("click", (event) => {
     for (let btn of operationBtns) {
@@ -85,4 +85,8 @@ const handleCalculation = (e) => {
     });
 };
 
-console.log(Math.exp("+"));
+// Clear Fields
+const clearInputs = () => {
+  num1Input.value = "";
+  num2Input.value = "";
+};
