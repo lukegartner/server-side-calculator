@@ -74,3 +74,5 @@ const handleCalculation = (e) => {
       alert("Something went wrong.");
     });
 };
+
+console.log(Math.exp("+"));
