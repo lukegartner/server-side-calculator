@@ -17,6 +17,33 @@ for (let btn of operationBtns) {
   });
 }
 
+// Get Calculations
+let myCalculations = [];
+const getCalculations = () => {
+  fetch("/calculations")
+    .then((response) => {
+      console.log("response:", response);
+      return response.json();
+    })
+    .then((json) => {
+      console.log("json:", json);
+      myCalculations = json;
+      displayCalculations(json);
+    })
+    .catch((error) => {
+      console.log("Error with request:", error);
+      alert("Something went wrong.");
+    });
+};
+
+// Display Calculations
+const displayCalculations = (calculations) => {
+  console.log("calculations from display:", calculations);
+};
+
+// Get iniital calculations
+getCalculations();
+
 // Handle Calculation
 const handleCalculation = (e) => {
   e.preventDefault();
@@ -30,6 +57,7 @@ const handleCalculation = (e) => {
   }
 
   const calculationToAdd = JSON.stringify({ num1, num2, operation });
+
   fetch("/calculations", {
     method: "POST",
     body: calculationToAdd,
@@ -38,7 +66,7 @@ const handleCalculation = (e) => {
     },
   })
     .then(() => {
-      // Get Calculations function (append to DOM)
+      getCalculations();
       // Could reset fields here. For now I'm thinking a better user experience would be to not reset fields.
     })
     .catch((error) => {

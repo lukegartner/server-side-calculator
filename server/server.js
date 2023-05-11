@@ -7,6 +7,12 @@ app.use(express.static("server/public/"));
 // json middleware
 app.use(express.json());
 
+// GET calculations
+app.get("/calculations", (req, res) => {
+  console.log(`Handling ${req.method}, ${req.url}`);
+  res.send(calculations);
+});
+
 // POST calculation
 let calculations = [];
 app.post("/calculations", (req, res) => {
