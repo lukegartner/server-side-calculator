@@ -7,6 +7,15 @@ app.use(express.static("server/public/"));
 // json middleware
 app.use(express.json());
 
+// POST calculation
+let calculations = [];
+app.post("/calculations", (req, res) => {
+  console.log("new calculation", req.body);
+  calculations.push(req.body);
+  console.log("calculations", calculations);
+  res.sendStatus(200);
+});
+
 app.listen(PORT, () => {
   console.log("Listening on port", PORT);
 });
