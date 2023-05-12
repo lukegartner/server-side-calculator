@@ -1,23 +1,23 @@
 // DOM variables
-const num1Input = document.querySelector("#num1");
-const num2Input = document.querySelector("#num2");
+const numBtns = document.querySelectorAll(".number-btn");
 const operationBtns = document.querySelectorAll(".operation-btn");
 const clearBtn = document.querySelector("#clear");
 const resultDOM = document.querySelector(".result");
 const historyList = document.querySelector(".history-list");
+const calculatorInput = document.querySelector("#calculator-input");
 
-// active math operation
-for (let btn of operationBtns) {
-  btn.addEventListener("click", (event) => {
-    for (let btn of operationBtns) {
-      if (event.target === btn) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    }
-  });
-}
+// active math operation NO LONGER NEEDED????????????????
+// for (let btn of operationBtns) {
+//   btn.addEventListener("click", (event) => {
+//     for (let btn of operationBtns) {
+//       if (event.target === btn) {
+//         btn.classList.add("active");
+//       } else {
+//         btn.classList.remove("active");
+//       }
+//     }
+//   });
+// }
 
 // Get Calculations
 let myCalculations = [];
@@ -43,11 +43,13 @@ const displayCalculations = (calculations) => {
   console.log("calculations from display:", calculations);
   if (calculations.length > 0) {
     resultDOM.innerHTML = calculations[calculations.length - 1].result;
-    historyList.innerHTML = calculations.map(({ expression }) => {
-      return `
+    historyList.innerHTML = calculations
+      .map(({ expression }) => {
+        return `
         <li>${expression}</li>
         `;
-    });
+      })
+      .join("");
   }
 };
 
@@ -57,32 +59,46 @@ getCalculations();
 // Handle Calculation
 const handleCalculation = (e) => {
   e.preventDefault();
-  const num1 = Number(num1Input.value);
-  const num2 = Number(num2Input.value);
-  let operation;
-  for (let btn of operationBtns) {
-    if (btn.classList.contains("active")) {
-      operation = btn.value;
-    }
-  }
-
-  const calculationToAdd = JSON.stringify({ num1, num2, operation });
 
   fetch("/calculations", {
     method: "POST",
-    body: calculationToAdd,
+    body: JSON.stringify(calculatorInput.value.split(" ")),
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then(() => {
       getCalculations();
-      // Could reset fields here. For now I'm thinking a better user experience would be to not reset fields.
+      // Set Calculator Input Field to previous response for arthmetic chaining.
     })
     .catch((error) => {
       console.log("Error with request:", error);
       alert("Something went wrong.");
     });
+};
+
+// --------
+// Construct input while typing expression to calculate
+// ---------
+
+// NumberButtons Event Listener
+for (let btn of numBtns) {
+  btn.addEventListener("click", (event) => {
+    inputNumber(event);
+  });
+}
+const inputNumber = (e) => {
+  calculatorInput.value += e.target.value;
+};
+
+// Arithmetic operation Button Event Listener
+for (let btn of operationBtns) {
+  btn.addEventListener("click", (event) => {
+    inputOperation(event);
+  });
+}
+const inputOperation = (e) => {
+  calculatorInput.value += ` ${e.target.value} `;
 };
 
 // Clear Fields

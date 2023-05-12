@@ -15,9 +15,9 @@ app.get("/calculations", (req, res) => {
   console.log(`Handling ${req.method}, ${req.url}`);
 
   res.send(
-    calculations.map(({ num1, num2, operation }) => {
-      const result = evaluateExpression(num1, num2, operation);
-      const expression = `${num1} ${operation} ${num2} = ${result}`;
+    calculations.map((calculation) => {
+      const result = evaluateExpression(calculation);
+      const expression = `${calculation.join(" ")} = ${result}`;
       return { result, expression };
     })
   );
