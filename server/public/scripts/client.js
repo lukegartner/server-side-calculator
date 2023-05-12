@@ -43,6 +43,8 @@ const displayCalculations = (calculations) => {
   console.log("calculations from display:", calculations);
   if (calculations.length > 0) {
     resultDOM.innerHTML = calculations[calculations.length - 1].result;
+    // Set Calculator Input Field to previous response for arthmetic chaining.
+    calculatorInput.value = calculations[calculations.length - 1].result;
     historyList.innerHTML = calculations
       .map(({ expression }) => {
         return `
@@ -69,7 +71,6 @@ const handleCalculation = (e) => {
   })
     .then(() => {
       getCalculations();
-      // Set Calculator Input Field to previous response for arthmetic chaining.
     })
     .catch((error) => {
       console.log("Error with request:", error);
@@ -103,6 +104,5 @@ const inputOperation = (e) => {
 
 // Clear Fields
 const clearInputs = () => {
-  num1Input.value = "";
-  num2Input.value = "";
+  calculatorInput.value = "";
 };
