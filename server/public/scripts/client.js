@@ -6,6 +6,9 @@ const resultDOM = document.querySelector(".result");
 const historyList = document.querySelector(".history-list");
 const calculatorInput = document.querySelector("#calculator-input");
 
+// Input State
+let inputIsResult = false;
+
 // active math operation NO LONGER NEEDED????????????????
 // for (let btn of operationBtns) {
 //   btn.addEventListener("click", (event) => {
@@ -40,11 +43,12 @@ const getCalculations = () => {
 
 // Display Calculations
 const displayCalculations = (calculations) => {
-  console.log("calculations from display:", calculations);
   if (calculations.length > 0) {
     resultDOM.innerHTML = calculations[calculations.length - 1].result;
     // Set Calculator Input Field to previous response for arthmetic chaining.
     calculatorInput.value = calculations[calculations.length - 1].result;
+    inputIsResult = true;
+    // display history
     historyList.innerHTML = calculations
       .map(({ expression }) => {
         return `
@@ -88,7 +92,14 @@ for (let btn of numBtns) {
     inputNumber(event);
   });
 }
+// NumberButtons add Number to input
 const inputNumber = (e) => {
+  // if input is showing a result chain any math operator to result
+  // Clear input if a new number is typed
+  if (inputIsResult) {
+    calculatorInput.value = "";
+    inputIsResult = false;
+  }
   calculatorInput.value += e.target.value;
 };
 
@@ -100,6 +111,7 @@ for (let btn of operationBtns) {
 }
 const inputOperation = (e) => {
   calculatorInput.value += ` ${e.target.value} `;
+  inputIsResult = false;
 };
 
 // Clear Fields
