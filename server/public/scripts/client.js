@@ -95,7 +95,7 @@ for (let btn of numBtns) {
 // NumberButtons add Number to input
 const inputNumber = (e) => {
   // if input is showing a result chain any math operator to result
-  // Clear input if a new number is typed
+  // Clear input if a new number is entered
   if (inputIsResult) {
     calculatorInput.value = "";
     inputIsResult = false;

@@ -9,99 +9,122 @@
   <body>
     <h1>Calculator</h1>
     <form onsubmit="handleCalculation(event)" class="input-form">
-      <!-- Calculator Input -->
-      <input id="calculator-input" class="input" type="text" />
-      <div class="button-container">
-        <div class="button-container-left">
-          <!-- Advanced Buttons -->
-          <div class="advanced">
-            <input
-              id="plus-minus"
-              class="btn advanced-btn"
-              type="button"
-              value="+/-"
-            />
-            <input
-              id="num8"
-              class="btn advanced-btn"
-              type="button"
-              value="sqrt"
-            />
-            <input id="num7" class="btn advanced-btn" type="button" value="%" />
-            <input
-              id="num1"
-              class="btn advanced-btn"
-              type="button"
-              value="MRC"
-            />
-            <input
-              id="num5"
-              class="btn advanced-btn"
-              type="button"
-              value="M-"
-            />
-            <input
-              id="num4"
-              class="btn advanced-btn"
-              type="button"
-              value="M+"
-            />
-          </div>
-          <!-- End Advanced Buttons -->
-          <!-- Numbers Buttons -->
-          <div class="numbers">
-            <input id="num9" class="btn number-btn" type="button" value="9" />
-            <input id="num8" class="btn number-btn" type="button" value="8" />
-            <input id="num7" class="btn number-btn" type="button" value="7" />
-            <input id="num1" class="btn number-btn" type="button" value="6" />
-            <input id="num5" class="btn number-btn" type="button" value="5" />
-            <input id="num4" class="btn number-btn" type="button" value="4" />
-            <input id="num3" class="btn number-btn" type="button" value="3" />
-            <input id="num2" class="btn number-btn" type="button" value="2" />
-            <input id="num1" class="btn number-btn" type="button" value="1" />
+      <!-- Entire Calculator -->
+      <div class="calculator">
+        <!-- Calculator Input -->
+        <input id="calculator-input" class="input" type="text" />
+        <!-- End Calculator Input -->
+        <!-- Title Container -->
+        <div class="title-container">
+          <i>T</i>
+          <p>Texas Instrumets</p>
+          <h1>TI-108</h1>
+          <div class="solar-panel"></div>
+        </div>
+        <!-- End Title Container -->
+        <!-- Thick Line -->
+        <div class="line-thick"></div>
+        <!-- End Thick Line -->
+        <!-- Button Container -->
+        <div class="button-container">
+          <div class="button-container-left">
+            <!-- Advanced Buttons -->
+            <div class="advanced">
+              <input
+                id="plus-minus"
+                class="btn advanced-btn"
+                type="button"
+                value="+/-"
+              />
+              <input
+                id="num8"
+                class="btn advanced-btn"
+                type="button"
+                value="sqrt"
+              />
+              <input
+                id="num7"
+                class="btn advanced-btn"
+                type="button"
+                value="%"
+              />
+              <input
+                id="num1"
+                class="btn advanced-btn"
+                type="button"
+                value="MRC"
+              />
+              <input
+                id="num5"
+                class="btn advanced-btn"
+                type="button"
+                value="M-"
+              />
+              <input
+                id="num4"
+                class="btn advanced-btn"
+                type="button"
+                value="M+"
+              />
+            </div>
+            <!-- End Advanced Buttons -->
+            <!-- Numbers Buttons -->
+            <div class="numbers">
+              <input id="num9" class="btn number-btn" type="button" value="9" />
+              <input id="num8" class="btn number-btn" type="button" value="8" />
+              <input id="num7" class="btn number-btn" type="button" value="7" />
+              <input id="num1" class="btn number-btn" type="button" value="6" />
+              <input id="num5" class="btn number-btn" type="button" value="5" />
+              <input id="num4" class="btn number-btn" type="button" value="4" />
+              <input id="num3" class="btn number-btn" type="button" value="3" />
+              <input id="num2" class="btn number-btn" type="button" value="2" />
+              <input id="num1" class="btn number-btn" type="button" value="1" />
 
-            <input
-              id="clear"
-              class="btn"
-              type="button"
-              value="on/c"
-              onclick="clearInputs()"
-            />
-            <input id="num0" class="btn number-btn" type="button" value="0" />
-            <input
-              id="num-dot"
-              class="btn number-btn"
-              type="button"
-              value="."
-            />
+              <input
+                id="clear"
+                class="btn"
+                type="button"
+                value="on/c"
+                onclick="clearInputs()"
+              />
+              <input id="num0" class="btn number-btn" type="button" value="0" />
+              <input
+                id="num-dot"
+                class="btn number-btn"
+                type="button"
+                value="."
+              />
+            </div>
+            <!-- End of Numbers Buttons -->
           </div>
-          <!-- End of Numbers Buttons -->
+          <!-- Arithmetic Buttons -->
+          <div class="arithmetic">
+            <input id="add" class="btn operation-btn" type="button" value="+" />
+            <input
+              id="subtract"
+              class="btn operation-btn"
+              type="button"
+              value="-"
+            />
+            <input
+              id="divide"
+              class="btn operation-btn"
+              type="button"
+              value="/"
+            />
+            <input
+              id="multiply"
+              class="btn operation-btn"
+              type="button"
+              value="*"
+            />
+            <input id="equals" class="btn equals-btn" type="submit" value="=" />
+          </div>
+          <!-- End of Arithmetic Buttons -->
         </div>
-        <!-- Arithmetic Buttons -->
-        <div class="arithmetic">
-          <input id="add" class="btn operation-btn" type="button" value="+" />
-          <input
-            id="subtract"
-            class="btn operation-btn"
-            type="button"
-            value="-"
-          />
-          <input
-            id="divide"
-            class="btn operation-btn"
-            type="button"
-            value="/"
-          />
-          <input
-            id="multiply"
-            class="btn operation-btn"
-            type="button"
-            value="*"
-          />
-          <input id="equals" class="btn" type="submit" value="=" />
-        </div>
-        <!-- End of Arithmetic Buttons -->
+        <!-- End Button Container -->
       </div>
+      <!-- End Entire Calculator -->
     </form>
     <h2 class="result">0</h2>
     <ul class="history-list">
