@@ -116,5 +116,6 @@ const inputOperation = (e) => {
 
 // Clear Fields
 const clearInputs = () => {
-  calculatorInput.value = "";
+  calculatorInput.value = "0";
+  inputIsResult = true;
 };

@@ -47,18 +47,19 @@ const evaluateExpression = (expression) => {
 
   return expressionToEvaluate[0];
 
-  switch (operation) {
-    case "+":
-      return num1 + num2;
-    case "-":
-      return num1 - num2;
-    case "/":
-      return num1 / num2;
-    case "*":
-      return num1 * num2;
-    default:
-      break;
-  }
+  // Base mode no longer needed?
+  // switch (operation) {
+  //   case "+":
+  //     return num1 + num2;
+  //   case "-":
+  //     return num1 - num2;
+  //   case "/":
+  //     return num1 / num2;
+  //   case "*":
+  //     return num1 * num2;
+  //   default:
+  //     break;
+  // }
 };
 
 module.exports = evaluateExpression;
