@@ -14,7 +14,7 @@ app.use(express.json());
 app.get("/calculations", (req, res) => {
   console.log(`Handling ${req.method}, ${req.url}`);
 
-  res.send(
+  res.status(200).send(
     calculations.map((calculation) => {
       const result = evaluateExpression(calculation);
       const expression = `${calculation.join(" ")} = ${result}`;
@@ -29,9 +29,15 @@ app.post("/calculations", (req, res) => {
   console.log("new calculation", req.body);
   calculations.push(req.body);
   console.log("calculations", calculations);
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 app.listen(PORT, () => {
   console.log("Listening on port", PORT);
+});
+
+// Delete History
+app.delete("/calculations", (req, res) => {
+  calculations = [];
+  res.send(204);
 });

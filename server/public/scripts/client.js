@@ -56,6 +56,9 @@ const displayCalculations = (calculations) => {
         `;
       })
       .join("");
+  } else {
+    resultDOM.innerHTML = 0;
+    historyList.innerHTML = "";
   }
 };
 
@@ -122,4 +125,16 @@ const inputOperation = (e) => {
 const clearInputs = () => {
   calculatorInput.value = "0";
   inputIsResult = true;
+};
+
+// Clear History
+const clearHistory = () => {
+  fetch("/calculations", { method: "DELETE" })
+    .then(() => {
+      getCalculations();
+      console.log("History Cleared");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
