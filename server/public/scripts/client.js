@@ -66,20 +66,24 @@ getCalculations();
 const handleCalculation = (e) => {
   e.preventDefault();
 
-  fetch("/calculations", {
-    method: "POST",
-    body: JSON.stringify(calculatorInput.value.split(" ")),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(() => {
-      getCalculations();
+  if (calculatorInput.value[calculatorInput.value.length - 1] !== " ") {
+    fetch("/calculations", {
+      method: "POST",
+      body: JSON.stringify(calculatorInput.value.split(" ")),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .catch((error) => {
-      console.log("Error with request:", error);
-      alert("Something went wrong.");
-    });
+      .then(() => {
+        getCalculations();
+      })
+      .catch((error) => {
+        console.log("Error with request:", error);
+        alert("Something went wrong.");
+      });
+  } else {
+    alert("please enter a valid expression");
+  }
 };
 
 // --------
