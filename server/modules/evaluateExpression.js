@@ -2,6 +2,7 @@
 
 const evaluateExpression = (expression) => {
   const expressionToEvaluate = expression.slice();
+
   while (expressionToEvaluate.length > 1) {
     // Two loops to separate order of operations
     // Multiplication and Division
@@ -43,23 +44,15 @@ const evaluateExpression = (expression) => {
         console.log("exp: -", expressionToEvaluate);
       }
     }
+
+    // Check for square root
+    if (expressionToEvaluate[1] === "√") {
+      let result = Math.sqrt(expressionToEvaluate[0]);
+      expressionToEvaluate.splice(0, 2, result);
+    }
   }
 
   return expressionToEvaluate[0];
-
-  // Base mode no longer needed?
-  // switch (operation) {
-  //   case "+":
-  //     return num1 + num2;
-  //   case "-":
-  //     return num1 - num2;
-  //   case "/":
-  //     return num1 / num2;
-  //   case "*":
-  //     return num1 * num2;
-  //   default:
-  //     break;
-  // }
 };
 
 module.exports = evaluateExpression;

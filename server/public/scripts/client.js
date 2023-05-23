@@ -67,7 +67,9 @@ getCalculations();
 
 // Handle Calculation
 const handleCalculation = (e) => {
-  e.preventDefault();
+  if (e) {
+    e.preventDefault();
+  }
 
   if (calculatorInput.value[calculatorInput.value.length - 1] !== " ") {
     fetch("/calculations", {
@@ -119,6 +121,12 @@ for (let btn of operationBtns) {
 const inputOperation = (e) => {
   calculatorInput.value += ` ${e.target.value} `;
   inputIsResult = false;
+};
+
+// Handle Square Root
+const handleSqrt = () => {
+  calculatorInput.value += " √";
+  handleCalculation();
 };
 
 // Clear Fields
