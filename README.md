@@ -1,9 +1,17 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Server Side Calculator (Texas Instruments TI-108)
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+A calculator emulator modeled after Texas Instruments TI-108. This project gets its data and logic from an express server, and is deployed on Heroku.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://stark-everglades-31336.herokuapp.com/)
+
+## Screen Shot
+
+![Alt text](/images/screenshot.png?raw=true "Optional Title")
+
+## Built with
+
+Javascript, HTML, CSS, Node.js, Express.js
