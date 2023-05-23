@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form onsubmit="handleCalculation(event)">
+      <input id="num1" class="input" type="number" />
+      <input
+        id="add"
+        class="btn operation-btn active"
+        type="button"
+        value="+"
+      />
+      <input id="subtract" class="btn operation-btn" type="button" value="-" />
+      <input id="divide" class="btn operation-btn" type="button" value="/" />
+      <input id="multiply" class="btn operation-btn" type="button" value="*" />
+      <input id="num2" class="input" type="number" />
+      <input id="equals" class="btn" type="submit" value="=" />
+      <input
+        id="clear"
+        class="btn"
+        type="button"
+        value="c"
+        onclick="clearInputs()"
+      />
+    </form>
+    <h2 class="result">0</h2>
+    <ul class="history-list">
+      <li>0 + 0 = 0</li>
+    </ul>
+    <script src="./scripts/client.js"></script>
+  </body>
+</html>
