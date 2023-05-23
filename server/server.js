@@ -1,5 +1,5 @@
 const express = require("express");
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 let app = express();
 
 // require modules
@@ -14,10 +14,10 @@ app.use(express.json());
 app.get("/calculations", (req, res) => {
   console.log(`Handling ${req.method}, ${req.url}`);
 
-  res.send(
-    calculations.map(({ num1, num2, operation }) => {
-      const result = evaluateExpression(num1, num2, operation);
-      const expression = `${num1} ${operation} ${num2} = ${result}`;
+  res.status(200).send(
+    calculations.map((calculation) => {
+      const result = evaluateExpression(calculation);
+      const expression = `${calculation.join(" ")} = ${result}`;
       return { result, expression };
     })
   );
@@ -29,9 +29,21 @@ app.post("/calculations", (req, res) => {
   console.log("new calculation", req.body);
   calculations.push(req.body);
   console.log("calculations", calculations);
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 app.listen(PORT, () => {
   console.log("Listening on port", PORT);
+});
+
+// Delete History
+app.delete("/calculations", (req, res) => {
+  calculations = [];
+  res.send(204);
+});
+
+// Recall History
+app.get("/calculations/:userIndex", (req, res) => {
+  const userIndex = req.params.userIndex;
+  res.status(200).send({ result: evaluateExpression(calculations[userIndex]) });
 });
