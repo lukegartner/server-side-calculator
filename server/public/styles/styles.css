@@ -24,7 +24,7 @@ body {
 /* 2.6in x 4.4in */
 .calculator {
   position: relative;
-  margin: 0 auto;
+  margin: 5rem auto;
   background-color: var(--blue-main);
   width: 2.6in;
   height: 4.4in;
