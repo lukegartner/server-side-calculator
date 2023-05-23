@@ -50,9 +50,9 @@ const displayCalculations = (calculations) => {
     inputIsResult = true;
     // display history
     historyList.innerHTML = calculations
-      .map(({ expression }) => {
+      .map(({ expression }, index) => {
         return `
-        <li>${expression}</li>
+        <li onclick="recallHistory(event)" data-index="${index}" >${expression}</li>
         `;
       })
       .join("");
@@ -133,6 +133,20 @@ const clearHistory = () => {
     .then(() => {
       getCalculations();
       console.log("History Cleared");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+// Recall History
+const recallHistory = (e) => {
+  const userIndex = e.target.dataset.index;
+  fetch(`/calculations/${userIndex}`)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      calculatorInput.value = json.result;
     })
     .catch((error) => {
       console.log(error);

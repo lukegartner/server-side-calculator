@@ -41,3 +41,9 @@ app.delete("/calculations", (req, res) => {
   calculations = [];
   res.send(204);
 });
+
+// Recall History
+app.get("/calculations/:userIndex", (req, res) => {
+  const userIndex = req.params.userIndex;
+  res.status(200).send({ result: evaluateExpression(calculations[userIndex]) });
+});
